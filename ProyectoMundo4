@@ -1,0 +1,24 @@
+/* Adivina la palabra
+por: Jonathan Burbano y Wendy Martínez */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+	//Declaracion de variables
+	char jugador1[100]={0};
+	char jugador2[100]={0};
+	
+	printf("Hola, vamos a jugar a adivinar la palabra oculta...Para comenzar, nos gustaria saber sus nombres \n");
+	
+	printf("Jugador 1, por favor ingresa tu nombre \n");
+	scanf("%s",jugador1);
+	
+	printf("Jugador 2, por favor ingresa tu nombre \n");
+	scanf("%s",jugador2);
+	
+	system("pause");
+	return 0;
+	
+}
