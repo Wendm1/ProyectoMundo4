@@ -1,0 +1,64 @@
+/* Adivina la palabra
+por: Jonathan Burbano y Wendy Martínez */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include<strings.h>
+
+int main()
+{
+	//Declaracion de variables
+	char jugador1[100]={0};
+	char jugador2[100]={0};
+	char palabra_adivinar[100]={0};//es donde se va a guardar la palabra ingresada 
+	char ocultar[100];//variable para ocultar la palbra
+	char *p; //es un arreglo para poder guardar la palabra_adivinar
+	int intentos=0;
+	int longitud=0;//es una varible auxiliar para gurdar el numero de letras
+	char letras[100]={0};//variable para el ingreso de las letras
+	
+	//ingreso de los jugadores
+	printf("Hola, vamos a jugar a adivinar la palabra oculta. \n Para comenzar, nos gustaria saber sus nombres \n");
+
+	printf("Jugador 1, por favor ingresa tu nombre \n");
+	scanf("%s",jugador1);
+
+
+	printf("Jugador 2, por favor ingresa tu nombre \n");
+	scanf("%s",jugador2);
+	
+	printf("ingresa una palabra jugarodor 1 \n");
+	scanf("%s",palabra_adivinar);
+
+	//arreglo para recorrer la palbra ingresada y contar el numero de letras que tiene 
+	p = palabra_adivinar;
+	while (*p != '\0') 
+	{
+		longitud++;
+		p++;         /* Vamos a la siguiente letra */
+		ocultar[longitud]='-';				
+	}
+	//intento del juugador 
+	printf("palabra oculta %s \n",ocultar);
+	while (intentos<10)
+	{
+		printf("ingrese una letra jugador 2:\n");
+		scanf("%s",letras);
+
+		//recorer la plabra ingresada para ser comparada con la letra ingresada 
+		for (int j=0; j<longitud; j++)
+		{
+			char nueva[100]={0};
+			if (palabra_adivinar[j]==letras[j])
+			{
+				printf("palabra oculta %s%s \n",letras,nueva);
+				j++;//aun falta comparar si quieres puedes ayudarme 
+			}
+		}
+		
+		intentos++;
+	}
+	printf("perdiste ");
+	return 0;
+
+}
