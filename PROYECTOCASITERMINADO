@@ -3,12 +3,9 @@ por: Jonathan Burbano y Wendy Martínez */
 
 #include <stdio.h>
 #include <stdlib.h>
-#include<strings.h>
-
-int main()
-{
-	                                              //Declaracion de variables
-	char jugador1[100]={0};
+#include<fstream>
+												//Declaracion de variables
+char jugador1[100]={0};
 	char jugador2[100]={0};
 	char palabra_adivinar[100]={0};               //es donde se va a guardar la palabra ingresada 
 	char ocultar[100];                            //variable para ocultar la palbra
@@ -19,6 +16,14 @@ int main()
 	char letras[1];                         //variable para el ingreso de las letras
 	int reveladas=0;                        //variable para ver si ya se revelaron todas las letetras
 	                                              //ingreso de los jugadores
+
+void codificar(void);
+void comparar(void);
+void escribir(void);
+
+int main()
+{
+	                                            
 	printf("Hola, vamos a jugar a adivinar la palabra oculta... Tienes 5 intentos para adivinarla \nPara comenzar, nos gustaria saber sus nombres \n");
 
 	printf("Jugador 1, por favor ingresa tu nombre \n");
@@ -33,21 +38,38 @@ int main()
 
 	printf("es momento de que %s adivine la palabra ingresada por  %s \n",jugador2,jugador1);
 
-	                                               //arreglo para recorrer la palbra ingresada y contar el numero de letras que tiene 
+	//funciones
+	escribir();
+	codificar();
+	comparar();
+	return 1;
+
+}
+
+//funcion para ocultar
+void codificar()
+{
+                              //arreglo para recorrer la palbra ingresada y contar el numero de letras que tiene 
 	p = palabra_adivinar;
 	while (*p != '\0') 
 	{
 		longitud++;
-		p++;         /* Vamos a la siguiente letra */			
+		p++;                   /* Vamos a la siguiente letra */			
 	}
 	
-	//Escribir '-' en el arreglo 'ocultar'
+								//Escribir '-' en el arreglo 'ocultar'
 	int i=0;
 	for(i=0;i<(longitud);i++)
 	{
 		ocultar[i]='-';
 	}
-	
+
+	return;
+}
+
+//funcion para comparar
+void comparar()
+{
 											//recorer la plabra ingresada para ser comparada con la letra ingresada
 	while(intentos>0)
 	{
@@ -90,9 +112,13 @@ int main()
     printf("La palabra oculta era: %s \n", palabra_adivinar);
 	}
 	
-	//opino que lo dejemos ahi porque ya funciona a la perfeccion o si quieres lo hacemos para el otro jugador
-	//seria repetir el codigo y hacerle algunos ajustes como reiniciar todas la variables 
-	//por mi doy por culminado el proyecto 
-	return 0;
-
+	return;
+}
+//funcion para crear y modificar archivos y generar toda la informacion 
+void escribir()
+{
+	FILE *historial=fopen("historial.txt","w");//crea el archivo
+	fprintf(historial, " juegos realizados    jugadores    resultados    palabra oculta    intentos​");//agrega la informacion 
+	
+	fclose(historial); 
 }
