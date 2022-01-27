@@ -1,4 +1,4 @@
-/* Adivina la palabra
+* Adivina la palabra
 por: Jonathan Burbano y Wendy Martínez */
 
 #include <stdio.h>
@@ -15,8 +15,8 @@ char jugador1[100]={0};
 	int cont=0;
 	char letras[1];                         //variable para el ingreso de las letras
 	int reveladas=0;                        //variable para ver si ya se revelaron todas las letetras
-	                                              //ingreso de los jugadores
-
+	int juegos=0;							//variable para guardar el numero de juegos 
+	                                             
 void codificar(void);
 void comparar(void);
 void escribir(void);
@@ -39,9 +39,10 @@ int main()
 	printf("es momento de que %s adivine la palabra ingresada por  %s \n",jugador2,jugador1);
 
 	//funciones
-	escribir();
+
 	codificar();
 	comparar();
+	escribir();
 	return 1;
 
 }
@@ -105,20 +106,24 @@ void comparar()
 	if (reveladas==longitud)
 	{
 		printf("Genial %s ganaste \n",jugador2);
+		juegos++;
 	}
 	else
 	{
 		printf("Perdiste %s \n",jugador2);	
     printf("La palabra oculta era: %s \n", palabra_adivinar);
+	juegos++;
 	}
 	
 	return;
 }
+
 //funcion para crear y modificar archivos y generar toda la informacion 
 void escribir()
 {
 	FILE *historial=fopen("historial.txt","w");//crea el archivo
-	fprintf(historial, " juegos realizados    jugadores    resultados    palabra oculta    intentos​");//agrega la informacion 
+	fprintf(historial, " juegos realizados    jugadores    resultados    palabra oculta    intentos​ \n");//agrega la informacion 
+	fprintf(historial,"%d ",juegos);
 	
 	fclose(historial); 
 }
